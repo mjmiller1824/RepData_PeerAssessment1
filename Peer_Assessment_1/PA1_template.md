@@ -1,5 +1,10 @@
-# Reproducible Research: Peer Assessment 1
 
+---
+title: 'Reproducible Research: Peer Assessment 1'
+output:
+  html_document:
+    keep_md: yes
+---
 
 ## Loading necessary packages 
 Please ensure that the activity.csv file is in the working directory.
@@ -8,13 +13,6 @@ Please ensure that the activity.csv file is in the working directory.
 if(!require("reshape")){
         install.packages("reshape")
         }
-```
-
-```
-## Loading required package: reshape
-```
-
-```r
 library(reshape)
 ```
 ## Loading and preprocessing the data
@@ -65,7 +63,7 @@ The histogram below is divided by groups of 1000 steps and shows how many days t
 hist(narm,breaks=25,xlab="Steps",ylab="Days",main="Count of Days Each Number of Steps Are Taken",xlim=c(0,25000),col="Red")#creates histogram of days each steps are walked with buckets of 1000 steps.
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 The mean number of steps per day is:
 
@@ -98,8 +96,18 @@ plot(meltint$Time,meltint$Steps,type="n")#creates time series plot
 lines(meltint$Time,meltint$Steps,type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+The time with the average maximum steps is: 
 
+```r
+int<-which.max(meltint$Steps)
+print(meltint[int,])
+```
+
+```
+##      Time    Steps
+## 104 08:35 206.1698
+```
 ## Imputing missing values
 Here we can see that the total number of na values is as follows:
 
@@ -129,7 +137,7 @@ xms<-tapply(xm$steps,xm$date,sum)#sum the steps and don't worry about NAs since 
 hist(xms,breaks=25,xlab="Steps",ylab="Days",main="Count of Days Each Number of Steps Are Taken",xlim=c(0,25000), ylim=c(0,20),col="Blue")#The new histogram
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
 Here is the mean for the new data set:
 
@@ -177,7 +185,7 @@ plot(meltend$indices,meltend$value,type="n",main="Weekend Mean Steps",xlab="Time
 lines(meltend$indices,meltend$value,type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-13-1.png) 
+![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png) 
 
 ```r
 datetime<-rbind(weekdays,weekend) #reintegrates data into single data set for further study.
