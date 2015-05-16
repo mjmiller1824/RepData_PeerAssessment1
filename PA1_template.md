@@ -92,7 +92,7 @@ meltint<-melt(intmean)#creates a 2 column data frame of the means per interval
 colnames(meltint)<-c("Time","Steps")#renamed columns to improve readability of code
 
 
-plot(meltint$Time,meltint$Steps,type="n")#creates time series plot
+plot(meltint$Time,meltint$Steps,type="n",xlab="Time",ylab="Steps",main="Mean Steps Over Time")#creates time series plot
 lines(meltint$Time,meltint$Steps,type="l")
 ```
 
@@ -134,7 +134,7 @@ Then we will sum the steps for each day and produce a histogram that can be comp
 
 ```r
 xms<-tapply(xm$steps,xm$date,sum)#sum the steps and don't worry about NAs since there are none now.
-hist(xms,breaks=25,xlab="Steps",ylab="Days",main="Count of Days Each Number of Steps Are Taken",xlim=c(0,25000), ylim=c(0,20),col="Blue")#The new histogram
+hist(xms,breaks=25,xlab="Steps",ylab="Days",main="Adjusted Count of Days Each Number of Steps Are Taken",xlim=c(0,25000), ylim=c(0,20),col="Blue")#The new histogram
 ```
 
 ![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
